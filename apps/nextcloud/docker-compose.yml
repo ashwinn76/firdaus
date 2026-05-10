@@ -29,5 +29,5 @@ services:
       REDIS_HOST: redis
     volumes:
       - ./html:/var/www/html
-      - /mnt/nas/nextcloud/data:/var/www/html/data
+      - ${NEXTCLOUD_DATA_DIR}:/var/www/html/data
 
