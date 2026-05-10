@@ -218,7 +218,7 @@ def main() -> int:
     # nextcloud root is one level up from scripts/
     nextcloud_root = script_dir.parent
 
-    env_file = Path(os.environ.get("NEXTCLOUD_ENV_FILE", script_dir / "../.env")).resolve()
+    env_file = Path(os.environ.get("NEXTCLOUD_ENV_FILE", script_dir / ".env")).resolve()
     # normalize: if relative path given, resolve relative to script dir
     if not env_file.is_absolute():
         env_file = (script_dir / env_file).resolve()
