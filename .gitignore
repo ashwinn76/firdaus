@@ -3,3 +3,5 @@
 html/
 logs/
 db/
+
+__pycache__/
