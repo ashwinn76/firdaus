@@ -88,7 +88,7 @@ def save_config(nextcloud_root: Path, backup_root: Path, date_str: str):
     print()
 
 
-def save_database_dump(nextcloud_root: Path, backup_root: Path, date_str: str):
+def save_database_dump(backup_root: Path, date_str: str):
     try:
         print("Backing up database...")
 
@@ -214,14 +214,12 @@ def restore_test_database(backup_file: Path) -> bool:
 
 
 def main() -> int:
-    script_dir = Path(__file__).resolve().parent
-    # nextcloud root is one level up from scripts/
-    nextcloud_root = script_dir.parent
+    nextcloud_root = Path(__file__).resolve().parent
 
-    env_file = Path(os.environ.get("NEXTCLOUD_ENV_FILE", script_dir / ".env")).resolve()
+    env_file = Path(os.environ.get("NEXTCLOUD_ENV_FILE", nextcloud_root / ".env")).resolve()
     # normalize: if relative path given, resolve relative to script dir
     if not env_file.is_absolute():
-        env_file = (script_dir / env_file).resolve()
+        env_file = (nextcloud_root / env_file).resolve()
 
     try:
         load_dotenv(env_file)
@@ -238,7 +236,7 @@ def main() -> int:
     print()
 
     save_config(nextcloud_root, BACKUP_ROOT, DATE)
-    save_database_dump(nextcloud_root, BACKUP_ROOT, DATE)
+    save_database_dump(BACKUP_ROOT, DATE)
 
     print("=============================================")
     return 0
