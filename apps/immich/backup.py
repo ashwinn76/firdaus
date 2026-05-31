@@ -120,7 +120,6 @@ def save_config(project_root: Path, backup_root: Path, date_str: str) -> bool:
 
         paths = [
             project_root / ".env",
-            project_root / "docker-compose.yml",
         ]
 
         archive_paths(cfg_file, paths, project_root)

@@ -5,3 +5,5 @@ logs/
 db/
 
 __pycache__/
+
+apps/immich/postgres/
